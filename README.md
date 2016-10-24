@@ -2,7 +2,9 @@
 
 ## Requirements
 - Python 3
-- Google Chrome/Firefox/PhantomJS
+- Google Chrome or Firefox
+
+## Python dependencies
 - selenium
 - requests
 - tqdm (optional: Required for `--progress`)
@@ -15,7 +17,7 @@
 Set your credentials in lines 9 and 10. If you don't do so, you'll be prompted for them as soon as the script launches.
 
 ## Running
-- `--browser`: Set which browser do you want to use to scrap. Possibles: "firefox", "chrome", "phantomjs". Default: Chrome
+- `--browser`: Set which browser do you want to use to scrap. Possibles: "firefox", "chrome". Default: Chrome
 - `--progress`: Show download speed. Possibles: "true", "false". Default: false
 
 Sorry Kadenze
