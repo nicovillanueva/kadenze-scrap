@@ -3,6 +3,7 @@
 import time
 import re
 import argparse
+import os
 import requests
 from selenium import webdriver
 
@@ -14,6 +15,7 @@ default = 'https://www.kadenze.com/courses/'
 parser = argparse.ArgumentParser()
 parser.add_argument('--browser', type=str, default='chrome', help='Browser to use. "firefox", "chrome". Defaults to "chrome"')
 parser.add_argument('--progress', type=bool, default=False, help='Show download speed or not. "true", "false". Defaults to "false"')
+parser.add_argument('--skipifexists', type=bool, default=True, help='Check if file exists before downloading. Defaults to "true". There\'s no way to verify for corruption, so you might want to set to False and re-download.')
 args = parser.parse_args()
 
 # -----------
@@ -37,6 +39,9 @@ def scrape_session(s):
 
 def download_all():
 	for k, v in vids.items():
+		if args.skipifexists and os.path.isfile(k):
+			print('File {} already exists. Skipping.'.format(k))
+			continue
 		cont = requests.get(v, stream=True)
 		with open(k, "wb") as f:
 			if args.progress:
